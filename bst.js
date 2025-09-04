@@ -37,8 +37,14 @@ class Tree {
       while((tree.left || tree.right) != null){
         if (tree.value < newNode.value){
           tree = tree.right
+          if ((tree.value || tree.value) == newNode.value){
+            throw new Error("value exists in bst only unique values may be inserted")
+          }
         } else if (tree.value > newNode.value){
           tree = tree.left 
+          if ((tree.value || tree.value) == newNode.value){
+            throw new Error("value exists in bst only unique values may be inserted")
+          }
         }
       }
       if (tree.value > newNode.value){
@@ -68,4 +74,6 @@ let tree = new Tree
 tree.buildTree([0,1,2,3,4,5,6,7], 0, 7) 
 
 tree.insert(13)
+prettyPrint(tree.root)
+tree.insert(9)
 prettyPrint(tree.root)
