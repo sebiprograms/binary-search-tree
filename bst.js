@@ -10,12 +10,11 @@ class Tree {
     constructor(){
         this.root = null;
     }
-
+    // still needs work to sort and remove duplicates in array
     buildTree(array, start, end) {
       if (start > end) {
         return null
       }
-      
 
       let mid = Math.floor(start + (end - start) / 2);
 
@@ -26,8 +25,47 @@ class Tree {
       this.root = root
       return root;
     }
+
+    insert(value){
+      if (this.root == null){
+        throw new Error("No bst associated with object call buildTree")
+      }
+
+      let newNode = new Node(value)
+      let tree = this.root
+      
+      while((tree.left || tree.right) != null){
+        if (tree.value < newNode.value){
+          tree = tree.right
+        } else if (tree.value > newNode.value){
+          tree = tree.left 
+        }
+      }
+      if (tree.value > newNode.value){
+        tree.left = newNode
+      } else {
+        tree.right = newNode
+      }
+
+    }
 }
 
-//let tree = new Tree([0,1,2,3,4,5,6,7])
-//console.log(tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)) 
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+  if (node === null) {
+    return;
+  }
+  if (node.right !== null) {
+    prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+  }
+  console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
+  if (node.left !== null) {
+    prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+  }
+};
 
+
+let tree = new Tree
+tree.buildTree([0,1,2,3,4,5,6,7], 0, 7) 
+
+tree.insert(13)
+prettyPrint(tree.root)
