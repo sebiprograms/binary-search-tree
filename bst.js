@@ -54,6 +54,21 @@ class Tree {
       }
 
     }
+
+    delete(){
+      
+    }
+
+    // need to read more before creating
+    isBalanced(leftCounter, rightCounter){
+      let tree = this.root
+       while((tree.left || tree.right) != null){
+         if (tree.left != null){
+          tree = tree.left
+          
+         }
+       }
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
