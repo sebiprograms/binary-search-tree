@@ -56,18 +56,32 @@ class Tree {
     }
 
     delete(){
-      
+        
     }
 
-    // need to read more before creating
-    isBalanced(leftCounter, rightCounter){
-      let tree = this.root
-       while((tree.left || tree.right) != null){
-         if (tree.left != null){
-          tree = tree.left
-          
-         }
-       }
+    height(node){
+  
+      if (node == null){
+        return 0
+      }
+
+      return 1 + Math.max(this.height(node.left),this.height(node.right))
+    }
+
+    // need to read more before creatings
+    isBalanced(node){
+      if (node === null){
+        return true;
+      }
+
+      let lHeight = this.height(node.left);
+      let rHeight = this.height(node.right);
+
+      if (Math.abs(lHeight - rHeight) > 1){
+        return false;
+      }
+
+      return this.isBalanced(node.left) && this.isBalanced(node.right)
     }
 }
 
@@ -88,7 +102,11 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 let tree = new Tree
 tree.buildTree([0,1,2,3,4,5,6,7], 0, 7) 
 
-tree.insert(13)
+
+
+
 prettyPrint(tree.root)
-tree.insert(9)
-prettyPrint(tree.root)
+
+console.log(tree.height(tree.root))
+
+console.log(tree.isBalanced(tree.root))
