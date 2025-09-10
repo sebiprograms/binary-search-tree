@@ -86,33 +86,33 @@ class Tree {
       return this.isBalanced(node.left) && this.isBalanced(node.right)
     }
     
-    preOrder(node, Array){
+    preOrder(node, arr){
       if (node === null) return   
       
       arr.push(node.value)
       console.log(node.value)
   
-      this.preOrder(node.left)
+      this.preOrder(node.left, arr)
 
-      this.preOrder(node.right)
+      this.preOrder(node.right, arr)
     }
 
-    inOrder(node, Array){
+    inOrder(node, arr){
       if (node === null) return
   
-      this.inOrder(node.left)
+      this.inOrder(node.left, arr)
 
       arr.push(node.value)
       console.log(node.value)
 
-      this.inOrder(node.right)
+      this.inOrder(node.right, arr)
     }
 
-    postOrder(node, Array){
+    postOrder(node, arr){
       if (node === null) return
   
-      this.postOrder(node.left)
-      this.postOrder(node.right)
+      this.postOrder(node.left, arr)
+      this.postOrder(node.right, arr)
 
       arr.push(node.value)
       console.log(node.value)  
@@ -144,6 +144,13 @@ class Tree {
       }
       return res
     }
+  
+    balanceBST(node){
+      let arr = []
+      this.inOrder(node, arr)
+
+      this.buildTree(arr, 0, arr.length-1)
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -168,4 +175,11 @@ tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)
 
 prettyPrint(tree.root)
 
-console.log(tree.leveOrder(tree.root))
+tree.insert(13)
+tree.insert(12)
+
+prettyPrint(tree.root)
+
+tree.balanceBST(tree.root)
+
+prettyPrint(tree.root)
