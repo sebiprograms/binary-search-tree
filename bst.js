@@ -124,6 +124,33 @@ class Tree {
       arr.push(node.value)
       console.log(node.value)  
     }
+
+    leveOrder(node){
+      if (node === null) return []
+
+      let res = []
+      let q = []
+      let currLevel = 0
+      q.push(node)
+
+      while (q.length > 0) {
+        let lenq = q.length
+        res.push([])
+        for (let i = 0; i < lenq; i++){
+          let node = q.shift()
+          res[currLevel].push(node.value)
+
+          if (node.left !== null) {
+            q.push(node.left)
+          }
+          if (node.right !== null) {
+            q.push(node.right)
+          }
+        }
+        currLevel+=1
+      }
+      return res
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -149,5 +176,4 @@ tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)
 prettyPrint(tree.root)
 let arr = new Array
 
-tree.postOrder(tree.root, arr)
-console.log(arr)
+console.log(tree.leveOrder(tree.root))
