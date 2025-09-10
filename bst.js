@@ -7,13 +7,6 @@ class Node {
     }
 }
 
-class Stack {
-  constructor(){
-    this.stack = []
-    this.top = this.stack[this.stack.length - 1]
-  }
-}
-
 class Tree {
     constructor(){
         this.root = null;
@@ -174,6 +167,5 @@ tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)
 
 
 prettyPrint(tree.root)
-let arr = new Array
 
 console.log(tree.leveOrder(tree.root))
