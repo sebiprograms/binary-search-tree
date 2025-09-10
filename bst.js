@@ -3,6 +3,7 @@ class Node {
         this.value = value;
         this.left = null;
         this.right = null;
+        this.visited = false;
     }
 }
 
@@ -91,14 +92,27 @@ class Tree {
 
       return this.isBalanced(node.left) && this.isBalanced(node.right)
     }
+    
+    preOrder(node, Array){
+      if (node === null) return   
+      
+      arr.push(node.value)
+      console.log(node.value)
+  
+      this.preOrder(node.left)
 
-    process(node){
-      let stack = new stack
-
+      this.preOrder(node.right)
     }
 
-    inOrderTraversal(callBack){
+    inOrder(node, Array){
+      if (node === null) return
+  
+      this.inOrder(node.left)
 
+      arr.push(node.value)
+      console.log(node.value)
+
+      this.inOrder(node.right)
     }
 }
 
@@ -123,7 +137,7 @@ tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)
 
 
 prettyPrint(tree.root)
+let arr = new Array
 
-console.log(tree.height(tree.root))
-
-console.log(tree.isBalanced(tree.root))
+tree.inOrder(tree.root, arr)
+console.log(arr)
