@@ -6,9 +6,17 @@ class Node {
     }
 }
 
+class Stack {
+  constructor(){
+    this.stack = []
+    this.top = this.stack[this.stack.length - 1]
+  }
+}
+
 class Tree {
     constructor(){
         this.root = null;
+        this.visited = null
     }
     // still needs work to sort and remove duplicates in array
     buildTree(array, start, end) {
@@ -82,6 +90,15 @@ class Tree {
       }
 
       return this.isBalanced(node.left) && this.isBalanced(node.right)
+    }
+
+    process(node){
+      let stack = new stack
+
+    }
+
+    inOrderTraversal(callBack){
+
     }
 }
 
