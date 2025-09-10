@@ -114,6 +114,16 @@ class Tree {
 
       this.inOrder(node.right)
     }
+
+    postOrder(node, Array){
+      if (node === null) return
+  
+      this.postOrder(node.left)
+      this.postOrder(node.right)
+
+      arr.push(node.value)
+      console.log(node.value)  
+    }
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -139,5 +149,5 @@ tree.buildTree([0,1,2,3,4,5,6,7], 0, 7)
 prettyPrint(tree.root)
 let arr = new Array
 
-tree.inOrder(tree.root, arr)
+tree.postOrder(tree.root, arr)
 console.log(arr)
